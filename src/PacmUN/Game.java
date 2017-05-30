@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication15;
+package PacmUN;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class Game extends JFrame {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Game frame = new Game();
-        frame.setTitle("TestPaintComponent");
+        frame.setTitle("PacmUN");
         frame.setSize(485, 465);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

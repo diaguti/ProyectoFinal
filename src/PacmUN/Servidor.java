@@ -3,39 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication15;
+package PacmUN;
 
-import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
  *
  * @author Diego
  */
-public class Cliente {
+public class Servidor {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        Socket cliente = new Socket("localhost", 1234);
-
-        ObjectOutputStream out = new ObjectOutputStream(cliente.getOutputStream());
-
-        FileInputStream file = new FileInputStream("puntaje.txt");
-
+        ServerSocket servidor = new ServerSocket(1234);
+        Socket sv = servidor.accept();
+        ObjectInputStream out = new ObjectInputStream(sv.getInputStream());
+        FileOutputStream file = new FileOutputStream("puntaje.txt");
         byte[] buf = new byte[4096];
-
         while (true) {
-            int len = file.read(buf);
+            int len = out.read(buf);
             if (len == -1) {
                 break;
             }
-            out.write(buf, 0, len);
+            file.write(buf, 0, len);
         }
-
     }
-
 }
